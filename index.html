@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Image Example</title>
+    <style>
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            padding: 36px 40px 32px 40px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 340px;
+            max-width: 95vw;
+        }
+        @media (max-width: 500px) {
+            .card {
+                padding: 18px 6vw 18px 6vw;
+                min-width: unset;
+            }
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #1976d2;
+            margin-bottom: 24px;
+        }
+        label {
+            font-weight: 500;
+            margin-right: 8px;
+        }
+        select, input[type="text"] {
+            padding: 8px 12px;
+            border: 1.5px solid #cfd8dc;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        select:focus, input[type="text"]:focus {
+            border: 1.5px solid #1976d2;
+        }
+        button {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 18px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-left: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #1256a2;
+        }
+        #personImage {
+            margin-top: 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+            background: #e3eaf2;
+            border: 1.5px solid #cfd8dc;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>View Image</h1>
+        <div style="margin-bottom: 10px;">
+            <label for="typeSelect">Select Type:</label>
+            <select id="typeSelect" onchange="updateLabel()">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label id="idLabel" for="idInput">SID:</label>
+            <input type="text" id="idInput" placeholder="Enter SID" />
+            <button onclick="showImage()">Show Image</button>
+        </div>
+        <img id="personImage" src="" alt="Description of image" width="300" style="display:none;">
+    </div>
+    <script>
+        function updateLabel() {
+            var type = document.getElementById('typeSelect').value;
+            var label = document.getElementById('idLabel');
+            if (type === 'student') {
+                label.textContent = 'SID:';
+                document.getElementById('idInput').placeholder = 'Enter SID';
+            } else {
+                label.textContent = 'TID:';
+                document.getElementById('idInput').placeholder = 'Enter ID';
+            }
+        }
+
+        function showImage() {
+            var type = document.getElementById('typeSelect').value;
+            var id = document.getElementById('idInput').value.trim();
+            var img = document.getElementById('personImage');
+            if (id) {
+                var imgUrl = '';
+                if (type === 'student') {
+                    imgUrl = 'https://student.marwadiuniversity.ac.in:553/handler/getImage.ashx?SID=' + encodeURIComponent(id);
+                } else {
+                    imgUrl = 'https://student.marwadiuniversity.ac.in:553/handler/getImage.ashx?ID=' + encodeURIComponent(id);
+                }
+                img.src = imgUrl;
+                img.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
