@@ -1,26 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Show Image Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .card {
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-            padding: 36px 40px 32px 40px;
-            margin-top: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 340px;
-            max-width: 95vw;
-        }
-        @media (max-width: 500px) {
-            .card {
-                padding: 18px 6vw 18px 6vw;
-                min-width: unset;
-            }
-        }
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #f4f6fb;
@@ -30,16 +14,37 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            width: 100%;
         }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+            padding: 36px 40px 32px 40px;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* min-width: 440px; */
+            /* max-width: 95vw; */
+        }
+
+        
+
         h1 {
-            color: #1976d2;
+            color: #01a8b4;
             margin-bottom: 24px;
+            text-align: center;
         }
+
         label {
             font-weight: 500;
             margin-right: 8px;
         }
-        select, input[type="text"] {
+
+        select,
+        input[type="text"] {
             padding: 8px 12px;
             border: 1.5px solid #cfd8dc;
             border-radius: 6px;
@@ -48,11 +53,14 @@
             outline: none;
             transition: border 0.2s;
         }
-        select:focus, input[type="text"]:focus {
-            border: 1.5px solid #1976d2;
+
+        select:focus,
+        input[type="text"]:focus {
+            border: 1.5px solid #01a8b4;
         }
+
         button {
-            background: #1976d2;
+            background: #01a8b4;
             color: #fff;
             border: none;
             border-radius: 6px;
@@ -64,21 +72,45 @@
             cursor: pointer;
             transition: background 0.2s;
         }
+
         button:hover {
-            background: #1256a2;
+            background: #01a8b4;
         }
+
         #personImage {
             margin-top: 18px;
             border-radius: 10px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
             background: #e3eaf2;
             border: 1.5px solid #cfd8dc;
         }
+
+        @media only screen and (max-width: 600px) {
+            .card {
+                padding: 18px 6vw;
+                width: 85%;
+                align-items: start;
+                /* keep if you want a different bg on mobile */
+            }
+            img{
+                width: 350px;
+            }
+            input[type="text"] {
+            /* padding: 8px px; */
+            border: 1.5px solid #cfd8dc;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        }
     </style>
 </head>
+
 <body>
     <div class="card">
-        <h1>View Image</h1>
+        <div style="width: 100%;"><h1 style="text-align: center;">View Muians</h1></div>
         <div style="margin-bottom: 10px;">
             <label for="typeSelect">Select Type:</label>
             <select id="typeSelect" onchange="updateLabel()">
@@ -91,7 +123,7 @@
             <input type="text" id="idInput" placeholder="Enter SID" />
             <button onclick="showImage()">Show Image</button>
         </div>
-        <img id="personImage" src="" alt="Description of image" width="300" style="display:none;">
+        <img id="personImage" src="" alt="Description of image" width="400" style="display:none;">
     </div>
     <script>
         function updateLabel() {
@@ -123,4 +155,5 @@
         }
     </script>
 </body>
+
 </html>
